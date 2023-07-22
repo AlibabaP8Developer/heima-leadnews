@@ -16,3 +16,10 @@ spring:
         group: leadnews-user-group
         file-extension: yaml
         refresh-enabled: true
+
+#swagger:
+#  title: "黑马头条API文档"
+#  description: "黑马头条API文档进行业务管理数据"
+#  base-package: com.heima.user
+#  enabled: true
+#  version: 1.0.0

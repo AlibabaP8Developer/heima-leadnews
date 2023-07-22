@@ -4,6 +4,7 @@ import com.heima.model.common.dtos.ResponseResult;
 import com.heima.model.user.dto.LoginDTO;
 import com.heima.user.service.ApUserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

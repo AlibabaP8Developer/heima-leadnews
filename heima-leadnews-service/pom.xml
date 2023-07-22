@@ -23,6 +23,11 @@
     </properties>
 
     <dependencies>
+        <!-- knife4j -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+        </dependency>
         <!-- 引入依赖模块 -->
         <dependency>
             <groupId>com.heima</groupId>
