@@ -1,0 +1,18 @@
+server:
+  port: 51601
+spring:
+  application:
+    name: leadnews-app-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        namespace: dev
+        group: leadnews-gateway-group
+      config:
+        namespace: dev
+        group: leadnews-gateway-group
+        file-extension: yaml
+        refresh-enabled: true
