@@ -1,0 +1,18 @@
+server:
+  port: 51803
+spring:
+  application:
+    name: leadnews-wemedia
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        namespace: dev
+        group: leadnews-group
+      config:
+        namespace: dev
+        group: leadnews-group
+        file-extension: yaml
+        refresh-enabled: true
