@@ -1,0 +1,6 @@
+minio:
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucket: testbucket
+  endpoint: http://139.198.181.54:9000
+  readPath: http://139.198.181.54:9000
