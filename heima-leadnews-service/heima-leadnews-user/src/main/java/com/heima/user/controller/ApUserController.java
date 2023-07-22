@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "App端用户相关接口", value = "App端用户相关接口")
 @RestController
-@RequestMapping("、api/v1")
+@RequestMapping("/api/v1")
 public class ApUserController {
 
     @Autowired
