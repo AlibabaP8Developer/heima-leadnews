@@ -10,9 +10,9 @@ spring:
       server-addr: localhost:8848
       discovery:
         namespace: dev
-        group: leadnews-gateway-group
+        group: leadnews-group
       config:
         namespace: dev
-        group: leadnews-gateway-group
+        group: leadnews-group
         file-extension: yaml
         refresh-enabled: true
