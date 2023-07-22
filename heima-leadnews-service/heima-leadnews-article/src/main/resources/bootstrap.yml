@@ -1,0 +1,18 @@
+server:
+  port: 51802
+spring:
+  application:
+    name: leadnews-article
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        namespace: dev
+        group: leadnews-group
+      config:
+        namespace: dev
+        group: leadnews-group
+        file-extension: yaml
+        refresh-enabled: true
