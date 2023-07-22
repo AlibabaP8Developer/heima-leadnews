@@ -3,10 +3,16 @@ server:
 spring:
   application:
     name: leadnews-user
+  profiles:
+    active: dev
   cloud:
     nacos:
+      server-addr: localhost:8848
       discovery:
-        server-addr: localhost:8848
+        namespace: dev
+        group: leadnews-user-group
       config:
-        server-addr: localhost:8848
-        file-extension: yml
+        namespace: dev
+        group: leadnews-user-group
+        file-extension: yaml
+        refresh-enabled: true
