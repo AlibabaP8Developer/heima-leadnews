@@ -1,14 +1,9 @@
 package com.itheima.freemarker.controller;
 
 import com.itheima.freemarker.entity.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 @Controller
 public class HelloController {
@@ -23,6 +18,7 @@ public class HelloController {
         student.setAge(18);
         model.addAttribute("stu", student);
 
+        // 通常ftl，也可以html、jsp、ftlh
         return "index";
     }
 }
