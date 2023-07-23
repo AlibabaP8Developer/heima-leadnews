@@ -16,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/v1/material")
 public class WmMaterialController {
 
-   @Autowired
-   private WmMaterialService wmMaterialService;
+    @Autowired
+    private WmMaterialService wmMaterialService;
 
     @PostMapping("upload_picture")
     public ResponseResult uploadPicture(MultipartFile multipartFile) {
