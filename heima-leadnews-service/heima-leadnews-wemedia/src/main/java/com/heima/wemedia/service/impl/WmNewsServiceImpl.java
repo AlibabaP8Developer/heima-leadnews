@@ -33,8 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.heima.common.constants.WemediaConstants.WM_CONTENT_REFERENCE;
-import static com.heima.common.constants.WemediaConstants.WM_NEWS_TYPE_AUTO;
+import static com.heima.common.constants.WemediaConstants.*;
 
 @Service
 @Slf4j
@@ -138,9 +137,49 @@ public class WmNewsServiceImpl extends ServiceImpl<WmNewsMapper, WmNews> impleme
         // 获取文章内容中的图片信息
         List<String> materials = ectractUrlInfo(dto.getContent());
         saveRelativeInfoForContent(materials, wmNews.getId());
-        // 4 不是草稿 保存文章封面图片与素材的关系
+        // 4 不是草稿 保存文章封面图片与素材的关系，如果当前布局是自动，需要匹配封面图片
+        saveRelativeInfoForCover(dto, wmNews, materials);
+        return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+    }
 
-        return null;
+    /**
+     * 功能1：如果当前封面类型为自动，则设置封面类型的数据
+     * 匹配规则：
+     * 1 如果内容图片>=1  <3 单图 type=1
+     * 2 如果内容图片>=3  多图 type=3
+     * 3 如果内容无图片  无图 type=0
+     *
+     * @param dto
+     * @param wmNews
+     * @param materials
+     */
+    private void saveRelativeInfoForCover(WmNewsDto dto, WmNews wmNews, List<String> materials) {
+        List<String> images = dto.getImages();
+        if (dto.getType().equals(WM_NEWS_TYPE_AUTO)) {
+            // 多图
+            if (materials.size() >= 3) {
+                wmNews.setType(WM_NEWS_MANY_IMAGE);
+                images = materials.stream().limit(3).collect(Collectors.toList());
+            } else if (materials.size() >=1 && materials.size() < 3) {
+                // 单图
+                wmNews.setType(WM_NEWS_SINGLE_IMAGE);
+                images = materials.stream().limit(1).collect(Collectors.toList());
+            } else {
+                // 无图
+                wmNews.setType(WM_NEWS_NONE_IMAGE);
+            }
+
+            // 修改文章
+            if (images != null && images.size() > 0) {
+                wmNews.setImages(StringUtils.join(images, ","));
+            }
+            updateById(wmNews);
+        }
+
+        if (images != null && images.size() > 0) {
+            saveRelativeInfo(materials, wmNews.getId(), WM_COVER_REFERENCE);
+        }
+
     }
 
     /**
