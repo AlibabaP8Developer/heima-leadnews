@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -58,6 +59,6 @@ public class WmMaterial implements Serializable {
      * 创建时间
      */
     @TableField("created_time")
-    private Date createdTime;
+    private LocalDateTime createdTime;
 
 }
