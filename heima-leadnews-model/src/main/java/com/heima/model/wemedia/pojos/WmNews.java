@@ -8,6 +8,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -69,13 +70,13 @@ public class WmNews implements Serializable {
      * 创建时间
      */
     @TableField("created_time")
-    private Date createdTime;
+    private LocalDateTime createdTime;
 
     /**
      * 提交时间
      */
     @TableField("submited_time")
-    private Date submitedTime;
+    private LocalDateTime submitedTime;
 
     /**
      * 当前状态
@@ -94,7 +95,7 @@ public class WmNews implements Serializable {
      * 定时发布时间，不定时则为空
      */
     @TableField("publish_time")
-    private Date publishTime;
+    private LocalDateTime publishTime;
 
     /**
      * 拒绝理由
