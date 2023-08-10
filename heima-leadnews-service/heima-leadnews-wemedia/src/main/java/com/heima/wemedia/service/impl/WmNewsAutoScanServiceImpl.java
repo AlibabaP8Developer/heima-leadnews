@@ -2,6 +2,7 @@ package com.heima.wemedia.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.google.common.collect.Lists;
+import com.heima.common.aliyun.GreenTextScan;
 import com.heima.model.wemedia.pojos.WmNews;
 import com.heima.wemedia.mapper.WmNewsMapper;
 import com.heima.wemedia.service.WmNewsAutoScanService;
@@ -20,17 +21,54 @@ public class WmNewsAutoScanServiceImpl implements WmNewsAutoScanService {
     @Autowired
     private WmNewsMapper wmNewsMapper;
 
+    @Autowired
+    private GreenTextScan greenTextScan;
+
     @Override
     @Transactional(readOnly = false)
     public void autoScanWmNews(Integer id) {
         // 1.查询自媒体文章
         WmNews wmNews = wmNewsMapper.selectById(id);
         if (wmNews == null) throw new RuntimeException("WmNewsAutoScanServiceImpl：文章不存在");
-        // 从内容中提取纯文本内容和图片
-        Map<String, Object> textAndImages = handleTextAndImages(wmNews);
-        // 2.审核文本内容  阿里云接口
-        // 3.审核图片 阿里云接口
-        // 4. 审核成功 保存App端的相关的文章数据
+
+        Short status = wmNews.getStatus();
+        short code = WmNews.Status.SUBMIT.getCode();
+        if (status.equals(code)) {
+            // 从内容中提取纯文本内容和图片
+            Map<String, Object> textAndImages = handleTextAndImages(wmNews);
+            // 2.审核文本内容  阿里云接口
+            String content = textAndImages.get("content").toString();
+            boolean isTextScan = handleTextScan(content, wmNews);
+            if (!isTextScan) return;
+            // 3.审核图片 阿里云接口
+
+            // 4. 审核成功 保存App端的相关的文章数据
+        }
+    }
+
+    /**
+     * 审核文本内容  阿里云接口
+     * @param content
+     * @param wmNews
+     */
+    private boolean handleTextScan(String content, WmNews wmNews) {
+        try {
+            Map map = greenTextScan.greeTextScan(content);
+            if (map != null) {
+                String suggestion = map.get("suggestion").toString();
+                // 审核失败
+                if (suggestion.equals("block")) {
+
+                }
+                // 审核成功
+                if (suggestion.equals("review")) {
+
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
     /**
