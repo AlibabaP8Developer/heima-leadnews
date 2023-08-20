@@ -30,6 +30,7 @@ public class ConsumerQuickStart {
             consumerRecords.forEach(consumerRecord -> {
                 System.out.println(consumerRecord.key());
                 System.out.println(consumerRecord.value());
+                System.out.println(consumerRecord.partition());
             });
         }
     }
