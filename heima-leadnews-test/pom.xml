@@ -17,6 +17,7 @@
         <module>minio-demo</module>
         <module>tess4j-demo</module>
         <module>kafka-demo</module>
+        <module>mongo-demo</module>
     </modules>
 
     <properties>
