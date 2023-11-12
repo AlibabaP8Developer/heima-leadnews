@@ -244,7 +244,7 @@ public class SampleXxlJob {
         logger.info("init");
     }
     public void destroy(){
-        logger.info("destroy");
+        logger.info("destory");
     }
 
 

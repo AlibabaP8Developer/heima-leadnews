@@ -95,7 +95,7 @@ public class TriggerCallbackThread {
                         logger.error(e.getMessage(), e);
                     }
                 }
-                logger.info(">>>>>>>>>>> xxl-job, executor callback thread destroy.");
+                logger.info(">>>>>>>>>>> xxl-job, executor callback thread destory.");
 
             }
         });
@@ -125,7 +125,7 @@ public class TriggerCallbackThread {
                         }
                     }
                 }
-                logger.info(">>>>>>>>>>> xxl-job, executor retry callback thread destroy.");
+                logger.info(">>>>>>>>>>> xxl-job, executor retry callback thread destory.");
             }
         });
         triggerRetryCallbackThread.setDaemon(true);

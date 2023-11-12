@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8888/xxl-job-admin
+#      addresses: http://139.198.181.54:8888/xxl-job-admin
+    executor:
+      # 执行器的名称
+      appname: xxl-job-executor-sample
+      port: 9999 # 端口

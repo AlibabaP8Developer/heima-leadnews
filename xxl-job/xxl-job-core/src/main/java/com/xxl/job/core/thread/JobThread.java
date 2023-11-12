@@ -44,9 +44,6 @@ public class JobThread extends Thread{
 		this.handler = handler;
 		this.triggerQueue = new LinkedBlockingQueue<TriggerParam>();
 		this.triggerLogIdSet = Collections.synchronizedSet(new HashSet<Long>());
-
-		// assign job thread name
-		this.setName("xxl-job, JobThread-"+jobId+"-"+System.currentTimeMillis());
 	}
 	public IJobHandler getHandler() {
 		return handler;
@@ -218,7 +215,7 @@ public class JobThread extends Thread{
                         TriggerCallbackThread.pushCallBack(new HandleCallbackParam(
                         		triggerParam.getLogId(),
 								triggerParam.getLogDateTime(),
-								XxlJobContext.HANDLE_CODE_FAIL,
+								XxlJobContext.HANDLE_COCE_FAIL,
 								stopReason + " [job running, killed]" )
 						);
                     }
@@ -234,7 +231,7 @@ public class JobThread extends Thread{
 				TriggerCallbackThread.pushCallBack(new HandleCallbackParam(
 						triggerParam.getLogId(),
 						triggerParam.getLogDateTime(),
-						XxlJobContext.HANDLE_CODE_FAIL,
+						XxlJobContext.HANDLE_COCE_FAIL,
 						stopReason + " [job not executed, in the job queue, killed.]")
 				);
 			}

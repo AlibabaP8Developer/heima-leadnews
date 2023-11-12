@@ -18,6 +18,7 @@
         <module>tess4j-demo</module>
         <module>kafka-demo</module>
         <module>mongo-demo</module>
+        <module>xxljob-demo</module>
     </modules>
 
     <properties>

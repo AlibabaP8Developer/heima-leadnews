@@ -6,7 +6,7 @@ import com.xxl.job.admin.core.util.I18nUtil;
 import com.xxl.job.admin.service.LoginService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.AsyncHandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author xuxueli 2015-12-12 18:09:04
  */
 @Component
-public class PermissionInterceptor implements AsyncHandlerInterceptor {
+public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
 	@Resource
 	private LoginService loginService;
@@ -27,7 +27,7 @@ public class PermissionInterceptor implements AsyncHandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		if (!(handler instanceof HandlerMethod)) {
-			return true;	// proceed with the next interceptor
+			return super.preHandle(request, response, handler);
 		}
 
 		// if need login
@@ -53,7 +53,7 @@ public class PermissionInterceptor implements AsyncHandlerInterceptor {
 			request.setAttribute(LoginService.LOGIN_IDENTITY_KEY, loginUser);
 		}
 
-		return true;	// proceed with the next interceptor
+		return super.preHandle(request, response, handler);
 	}
 	
 }

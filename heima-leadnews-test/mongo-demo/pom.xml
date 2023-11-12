@@ -10,7 +10,7 @@
     <artifactId>mongo-demo</artifactId>
     <packaging>maven-plugin</packaging>
 
-    <name>mongo-demo Maven Plugin</name>
+    <name>mongo-demo</name>
 
     <!-- FIXME change it to the project's website -->
     <url>http://maven.apache.org</url>
