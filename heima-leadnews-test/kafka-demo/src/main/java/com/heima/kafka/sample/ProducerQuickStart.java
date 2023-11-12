@@ -1,4 +1,4 @@
-package com.heima;
+package com.heima.kafka.sample;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;

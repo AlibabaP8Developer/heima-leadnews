@@ -1,4 +1,4 @@
-package com.heima;
+package com.heima.kafka.sample;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -16,7 +16,7 @@ public class ConsumerQuickStart {
         // Kafka配置信息
         Properties properties = new Properties();
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "139.198.181.54:9092");
-        // key and value序列化
+        // key and value反序列化
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group1");
