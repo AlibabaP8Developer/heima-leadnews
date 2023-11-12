@@ -12,4 +12,11 @@ public class HelloListener {
             System.out.println("kafka测试：" + msg);
         }
     }
+
+    @KafkaListener(topics = "user-topic")
+    public void onMessageObj(String msg) {
+        if (!StringUtils.isEmpty(msg)) {
+            System.out.println("kafka测试对象：" + msg);
+        }
+    }
 }
