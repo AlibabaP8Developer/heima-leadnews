@@ -16,7 +16,6 @@ import java.util.Date;
  *
  * @author itheima
  */
-
 @Data
 @TableName("ap_article")
 public class ApArticle implements Serializable {
