@@ -6,4 +6,3 @@ spring:
       host: 139.198.181.54
       port: 27017
       database: leadnews-history
-
