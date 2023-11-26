@@ -14,4 +14,6 @@ spring:
       group-id: ${spring.application.name}-test
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer  # key的反序列化
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer  # key的反序列化
-
+kafka:
+  hosts: 139.198.181.54:9092
+  group: ${spring.application.name}
