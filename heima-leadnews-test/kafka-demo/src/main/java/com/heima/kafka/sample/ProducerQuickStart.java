@@ -36,18 +36,24 @@ public class ProducerQuickStart {
                 参数3：消息key
                 参数4：消息value
              */
-            ProducerRecord<String, String> kvProducerRecord = new ProducerRecord<>("topic-first", 0, "key-001", "hello kafka");
+            for (int i = 0; i < 5; i++) {
+                ProducerRecord<String, String> kvProducerRecord = new ProducerRecord<>("itcast-topic-input", 0, "key-001", "hello kafka");
+                producer.send(kvProducerRecord);
+            }
+
+
+            //ProducerRecord<String, String> kvProducerRecord = new ProducerRecord<>("topic-first", 0, "key-001", "hello kafka");
             // 同步发送消息
             //RecordMetadata recordMetadata = producer.send(kvProducerRecord).get();
             //System.out.println(recordMetadata.offset());
 
             // 异步
-            producer.send(kvProducerRecord, (recordMetadata, e)->{
-                if (e!=null) {
-                    System.out.println("记录异常信息到日志表中");
-                }
-                System.out.println(recordMetadata.offset());
-            });
+            //producer.send(kvProducerRecord, (recordMetadata, e) -> {
+            //    if (e != null) {
+            //        System.out.println("记录异常信息到日志表中");
+            //    }
+            //    System.out.println(recordMetadata.offset());
+            //});
 
             // 4.关闭消息通道，否则消息发送不成功
             producer.close();

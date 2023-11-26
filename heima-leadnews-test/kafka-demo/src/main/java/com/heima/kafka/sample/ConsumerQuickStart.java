@@ -23,15 +23,18 @@ public class ConsumerQuickStart {
         // 创建消费者对象
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         // 订阅主题
-        consumer.subscribe(Collections.singletonList("topic-first"));
+        consumer.subscribe(Collections.singletonList("itcast-topic-out"));
         // 拉取消息 一直处于监听的状态
         while (true) {
             ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(1000));
             consumerRecords.forEach(consumerRecord -> {
                 System.out.println(consumerRecord.key());
                 System.out.println(consumerRecord.value());
+                System.out.println(consumerRecord.offset());
                 System.out.println(consumerRecord.partition());
             });
+            // 异步提交偏移量
+            consumer.commitAsync();
         }
     }
 }
